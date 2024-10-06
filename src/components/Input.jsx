@@ -1,11 +1,9 @@
 import React from 'react';
 
-const Input = ({...props}) => {
+const Input = ({as: Tag = "input", ...props}) => {
+    const classes = "my-2 px-4 py-2 w-[250px] bg-stone-500 text-stone-100 cursor-pointer placeholder:text-stone-100 focus:placeholder:text-transparent";
     return (
-        <input
-            className="my-2 px-4 py-2 w-[250px] bg-stone-500 text-xs text-stone-100 cursor-pointer placeholder:text-stone-100 focus:placeholder:text-transparent"
-            {...props}
-        />
+        <Tag {...props} className={classes}></Tag>
     );
 };
 
