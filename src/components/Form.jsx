@@ -11,7 +11,7 @@ const Form = () => {
                     placeholder="Name project"
                 />
                 <Input
-                    as={"textarea"}
+                    as="textarea"
                     placeholder="Description project"
                 />
                 <div className="flex justify-between">
