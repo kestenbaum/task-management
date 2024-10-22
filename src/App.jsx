@@ -35,10 +35,19 @@ function App() {
         })
     }
 
+    function handleCloseForm () {
+        setProjectState(prevState => {
+            return {
+                ...prevState,
+                projectStatus: undefined
+            }
+        })
+    }
+
     let content;
 
     if (projectState.projectStatus === null) {
-        content = <Form onCreate={handleCreateProject}/>
+        content = <Form onCreate={handleCreateProject} onClose={handleCloseForm}/>
     } else if (projectState.projectStatus === undefined) {
         content = <NoProjectSelected onAddProject={handleAddProject}/>;
     }
