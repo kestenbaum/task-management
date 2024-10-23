@@ -11,7 +11,7 @@ function App() {
         projects: [],
     })
 
-    function handleSelectedProject (id) {
+    function handleSelectedProject(id) {
         setProjectState(prevState => {
             return {
                 ...prevState,
@@ -45,7 +45,17 @@ function App() {
         })
     }
 
-    function handleCloseForm () {
+    function handleDeleteProject() {
+        setProjectState(prevState => {
+            return {
+                ...prevState,
+                selectedProjectId: undefined,
+                projects: prevState.projects.filter((project) => project.id !== projectState.id)
+            }
+        })
+    }
+
+    function handleCloseForm() {
         setProjectState(prevState => {
             return {
                 ...prevState,
@@ -56,7 +66,7 @@ function App() {
 
     const selectedProject = projectState.projects.find(project => project.id === projectState.selectedProjectId)
 
-    let content = <SelectedProject project={selectedProject}/>;
+    let content = <SelectedProject project={selectedProject} onDelete={handleDeleteProject}/>;
 
     if (projectState.selectedProjectId === null) {
         content = <Form
