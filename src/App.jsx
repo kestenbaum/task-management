@@ -3,18 +3,28 @@ import {useState} from "react";
 import Sidebar from "./components/Sidebar.jsx";
 import NoProjectSelected from "./components/NoProjectSelected.jsx";
 import Form from "./components/Form.jsx";
+import SelectedProject from "./components/SelectedProject.jsx";
 
 function App() {
     const [projectState, setProjectState] = useState({
-        projectStatus: undefined,
+        selectedProjectId: undefined,
         projects: [],
     })
+
+    function handleSelectedProject (id) {
+        setProjectState(prevState => {
+            return {
+                ...prevState,
+                selectedProjectId: id
+            }
+        })
+    }
 
     function handleAddProject() {
         setProjectState(prevState => {
             return {
                 ...prevState,
-                projectStatus: null
+                selectedProjectId: null
             }
         })
     }
@@ -29,7 +39,7 @@ function App() {
 
             return {
                 ...prevState,
-                projectStatus: undefined,
+                selectedProjectId: undefined,
                 projects: [...prevState.projects, newProject]
             }
         })
@@ -39,22 +49,32 @@ function App() {
         setProjectState(prevState => {
             return {
                 ...prevState,
-                projectStatus: undefined
+                selectedProjectId: undefined
             }
         })
     }
 
-    let content;
+    const selectedProject = projectState.projects.find(project => project.id === projectState.selectedProjectId)
 
-    if (projectState.projectStatus === null) {
-        content = <Form onCreate={handleCreateProject} onClose={handleCloseForm}/>
-    } else if (projectState.projectStatus === undefined) {
+    let content = <SelectedProject project={selectedProject}/>;
+
+    if (projectState.selectedProjectId === null) {
+        content = <Form
+            onCreate={handleCreateProject}
+            onClose={handleCloseForm}
+        />
+    } else if (projectState.selectedProjectId === undefined) {
         content = <NoProjectSelected onAddProject={handleAddProject}/>;
     }
 
     return (
         <main className="h-screen flex gap-8">
-            <Sidebar onAddProject={handleAddProject} projects={projectState.projects} />
+            <Sidebar
+                onAddProject={handleAddProject}
+                onSelectProject={handleSelectedProject}
+                projects={projectState.projects}
+                selectedProjectId={projectState.selectedProjectId}
+            />
             {content}
         </main>
     );
