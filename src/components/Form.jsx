@@ -1,4 +1,4 @@
-import {useRef} from "react";
+import { useRef } from "react";
 import Button from "./Button.jsx";
 import Input from "./Input.jsx";
 import Modal from "./Modal.jsx";
@@ -9,12 +9,10 @@ const Form = ({onCreate, onClose}) => {
     const dateRef = useRef(null);
     const modalRef = useRef(null);
 
-
-    const handleSave = () => {
+    function handleSave ()  {
         const titleValue = titleRef.current.value;
         const descriptionValue = descriptionRef.current.value;
         const dateValue = dateRef.current.value;
-
 
         if (titleValue.trim() === ""
             || descriptionValue.trim() === ""
@@ -30,7 +28,6 @@ const Form = ({onCreate, onClose}) => {
             date: dateValue,
         })
     }
-
 
     return (
         <>
