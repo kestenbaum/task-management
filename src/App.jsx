@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 
 import Sidebar from "./components/Sidebar.jsx";
 import NoProjectSelected from "./components/NoProjectSelected.jsx";
@@ -50,7 +50,7 @@ function App() {
             return {
                 ...prevState,
                 selectedProjectId: undefined,
-                projects: prevState.projects.filter((project) => project.id !== projectState.id)
+                projects: prevState.projects.filter((project) => project.id !== prevState.selectedProjectId)
             }
         })
     }
