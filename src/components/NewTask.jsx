@@ -8,6 +8,8 @@ const NewTask = ({onAddTask}) => {
     }
 
     function handleClick () {
+        if (valueTask.trim() === "") return;
+
         onAddTask(valueTask);
         setValueTask("")
     }
