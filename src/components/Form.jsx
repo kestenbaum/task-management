@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import Button from "./Button.jsx";
-import Input from "./Input.jsx";
+import TextField from "./TextField.jsx";
 import Modal from "./Modal.jsx";
 
 const Form = ({onCreate, onClose}) => {
@@ -40,17 +40,17 @@ const Form = ({onCreate, onClose}) => {
                     <Button onClick={handleSave}>Save</Button>
                 </div>
                 <form className="flex flex-col w-[250px]">
-                    <Input
+                    <TextField
                         placeholder="Title"
                         type="text"
                         ref={titleRef}
                     />
-                    <Input
+                    <TextField
                         textarea
                         placeholder="Description"
                         ref={descriptionRef}
                     />
-                    <Input
+                    <TextField
                         placeholder="Due Date"
                         type="date"
                         ref={dateRef}

@@ -1,6 +1,4 @@
-import React from 'react';
-
-const SelectedProject = ({project, onDelete}) => {
+const SelectedProject = ({ project, onDelete }) => {
     const formattedDate = new Date(project.date).toLocaleDateString("en-US", {
         year: "numeric",
         month: "short",
